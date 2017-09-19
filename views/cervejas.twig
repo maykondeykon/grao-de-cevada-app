@@ -1,0 +1,19 @@
+<section id="cerveja-section" class="main special">
+    <header class="major">
+        <h2>Cervejas</h2>
+        <p>Veja abaixo nossas melhores cervejas.</p>
+    </header>
+
+    <div class="list-group">
+        {% for cerveja in cervejas %}
+            <a href="#" class="list-group-item">{{ cerveja.marca|e }} - {{ cerveja.categoria.descricao|e }}- {{ cerveja.paisOrigem.descricao|e }}</a>
+        {% endfor %}
+    </div>
+
+    <footer class="major">
+        <ul class="actions">
+            <li><a href="generic.html" class="button special">Get Started</a></li>
+            <li><a href="generic.html" class="button">Learn More</a></li>
+        </ul>
+    </footer>
+</section>
