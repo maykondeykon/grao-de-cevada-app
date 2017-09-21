@@ -4,16 +4,39 @@
         <p>Veja abaixo nossas melhores cervejas.</p>
     </header>
 
-    <div class="list-group">
-        {% for cerveja in cervejas %}
-            <a href="#" class="list-group-item">{{ cerveja.marca|e }} - {{ cerveja.categoria.descricao|e }}- {{ cerveja.paisOrigem.descricao|e }}</a>
-        {% endfor %}
+    <div class="bs-example bs-example-tabs" data-example-id="togglable-tabs">
+        <ul class="nav nav-tabs" id="tabCervejas" role="tablist">
+            <li role="presentation" class="active"><a href="#todasCervejas" id="home-tab" role="tab" data-toggle="tab"
+                                                      aria-controls="home" aria-expanded="true">Cervejas</a>
+            </li>
+            <li role="presentation"><a href="#rankingCervejas" role="tab" id="profile-tab" data-toggle="tab"
+                                       aria-controls="profile">Ranking</a>
+            </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade in active" role="tabpanel" id="todasCervejas" aria-labelledby="home-tab">
+                <div class="list-group">
+                    {% for cerveja in cervejas %}
+                        <a href="#" class="list-group-item" onclick="return false;">
+                            <img class="media-object img-cerveja-list" src="{{ imgResource }}{{ cerveja.foto|e }}">
+                            {{ cerveja.marca|e }} - {{ cerveja.categoria.descricao|e }}
+                            - {{ cerveja.paisOrigem.descricao|e }}
+                        </a>
+                    {% endfor %}
+                </div>
+
+            </div>
+            <div class="tab-pane fade" role="tabpanel" id="rankingCervejas" aria-labelledby="profile-tab">
+                {% for cerveja in ranking %}
+                    <a href="#" class="list-group-item" onclick="return false;">
+                        {{ loop.index }}ª -
+                        {{ cerveja.marca|e }} - {{ cerveja.categoria.descricao|e }}
+                        - {{ cerveja.paisOrigem.descricao|e }}
+                        <img class="media-object img-cerveja-list" src="{{ imgResource }}{{ cerveja.foto|e }}">
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
     </div>
 
-    <footer class="major">
-        <ul class="actions">
-            <li><a href="generic.html" class="button special">Get Started</a></li>
-            <li><a href="generic.html" class="button">Learn More</a></li>
-        </ul>
-    </footer>
 </section>

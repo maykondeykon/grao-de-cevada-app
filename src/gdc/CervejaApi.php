@@ -13,21 +13,37 @@ class CervejaApi
 {
     private $client;
     private $uri;
+    private $resource;
 
     public function __construct()
     {
         $this->client = new Client();
-        $this->uri = "http://10.42.0.11:8090/graodecevada/api";
+        $this->uri = "http://172.20.2.85:8090/graodecevada";
+        $this->resource = $this->uri."/api";
     }
 
     public function getCerverjas()
     {
-        $resource = "/cervejas";
+        $subResource = "/cervejas";
         $method = "GET";
-        $uri_resource = $this->uri . $resource;
 
-        $res = $this->client->request($method, $uri_resource);
+        $res = $this->client->request($method, $this->resource . $subResource);
         return $res->getBody();
+    }
+
+    public function getRanking()
+    {
+        $subResource = "/ranking";
+        $method = "GET";
+
+        $res = $this->client->request($method, $this->resource . $subResource);
+        return $res->getBody();
+    }
+
+    public function getImageResource()
+    {
+        $subResource = "/uploads/cervejas/";
+        return $this->uri .$subResource;
     }
 
 }
